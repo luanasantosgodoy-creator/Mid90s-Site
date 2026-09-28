@@ -1,683 +1,3 @@
-<!DOCTYPE:root
-<html lang="pt-BR" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MID90S (2018) | Landing Page & Guia de Estilo CSS</title>
-    
-    <!-- Google Fonts: Bebas Neue (impacto/stencil vibe), Permanent Marker, Space Mono & Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;600;800&family=Permanent+Marker&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <style>
-        /* ==========================================================================
-           STYLE.CSS - MID90S ESTÉTICA GRUNGE, URBANA & UNDERGROUND 1990
-           ========================================================================== */
-        
-        :root {
-            --bg-asphalt: #121214;
-            --bg-matte-black: #1a1a1e;
-            --bg-card: #1f1f24;
-            --accent-red-dark: #8b0000;
-            --accent-red-vivid: #c02626;
-            --accent-red-hover: #e63946;
-            --accent-tape: #d4a373;
-            --text-white: #ffffff;
-            --text-light-gray: #e2e8f0;
-            --text-muted: #94a3b8;
-            --border-grunge: #2d2d38;
-            --shadow-xerox: 5px 5px 0px rgba(139, 0, 0, 0.4);
-            --shadow-xerox-black: 6px 6px 0px #000000;
-            --font-impact: 'Bebas Neue', sans-serif;
-            --font-street: 'Permanent Marker', cursive;
-            --font-mono: 'Space Mono', monospace;
-            --font-body: 'Inter', sans-serif;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            background-color: var(--bg-asphalt);
-            color: var(--text-light-gray);
-            font-family: var(--font-body);
-            line-height: 1.6;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* Efeito de ruído granulado VHS / Asfalto */
-        .vhs-noise {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.06'/%3E%3C/svg%3E");
-            pointer-events: none;
-            z-index: 99;
-        }
-
-        /* Scanlines VHS */
-        .scanlines {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(
-                to bottom,
-                rgba(255,255,255,0),
-                rgba(255,255,255,0) 50%,
-                rgba(0, 0, 0, 0.35) 50%,
-                rgba(0, 0, 0, 0.35)
-            );
-            background-size: 100% 4px;
-            pointer-events: none;
-            z-index: 98;
-            opacity: 0.3;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-asphalt);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--accent-red-dark);
-            border-radius: 2px;
-        }
-
-        /* Header & Navegação Flexbox */
-        .header {
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background-color: rgba(18, 18, 20, 0.95);
-            border-bottom: 2px solid var(--accent-red-dark);
-            backdrop-filter: blur(8px);
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0.8rem 1.5rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            text-decoration: none;
-        }
-
-        .logo-tag {
-            background-color: var(--accent-red-vivid);
-            color: var(--text-white);
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            font-weight: bold;
-            padding: 0.2rem 0.5rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 2px 2px 0px #000;
-        }
-
-        .logo-text {
-            font-family: var(--font-impact);
-            font-size: 2.2rem;
-            color: var(--text-white);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.8rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: all 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent-red-hover);
-            text-shadow: 1px 1px 0px #000;
-        }
-
-        /* Hero Section */
-        .hero {
-            position: relative;
-            padding: 5rem 1.5rem 4rem;
-            min-height: 85vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-bottom: 2px solid var(--border-grunge);
-            background: linear-gradient(180deg, rgba(18, 18, 20, 0.7) 0%, rgba(26, 26, 30, 0.95) 100%),
-                        url('https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-            position: relative;
-            z-index: 10;
-        }
-
-        .vhs-stamp {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background: #000;
-            border: 1px solid var(--accent-red-dark);
-            padding: 0.4rem 1rem;
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--accent-red-hover);
-            letter-spacing: 2px;
-            box-shadow: var(--shadow-xerox-black);
-        }
-
-        .title-huge {
-            font-family: var(--font-impact);
-            font-size: clamp(3.2rem, 8vw, 6.5rem);
-            line-height: 0.9;
-            color: var(--text-white);
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            text-shadow: 4px 4px 0px var(--accent-red-dark), 7px 7px 0px #000;
-        }
-
-        .title-huge span {
-            color: var(--accent-red-vivid);
-            display: block;
-            font-family: var(--font-street);
-            font-size: clamp(2.5rem, 6vw, 4.8rem);
-            text-shadow: 3px 3px 0px #000;
-            letter-spacing: 1px;
-        }
-
-        .hero-description {
-            font-size: 1.1rem;
-            color: var(--text-light-gray);
-            max-width: 750px;
-            line-height: 1.7;
-            background: rgba(0,0,0,0.6);
-            padding: 1.2rem;
-            border-left: 4px solid var(--accent-red-dark);
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 1rem;
-        }
-
-        /* Botões Estilo Underground/Punk */
-        .btn-grunge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background-color: var(--accent-red-dark);
-            color: var(--text-white);
-            font-family: var(--font-impact);
-            font-size: 1.3rem;
-            letter-spacing: 2px;
-            padding: 0.8rem 1.8rem;
-            text-decoration: none;
-            text-transform: uppercase;
-            border: 2px solid #000;
-            box-shadow: var(--shadow-xerox-black);
-            transition: all 0.15s ease;
-            cursor: pointer;
-        }
-
-        .btn-grunge:hover {
-            background-color: var(--accent-red-hover);
-            transform: translate(-2px, -2px);
-            box-shadow: 8px 8px 0px #000;
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            border: 2px solid var(--text-muted);
-            color: var(--text-light-gray);
-        }
-
-        .btn-outline:hover {
-            background-color: var(--bg-card);
-            border-color: var(--text-white);
-            color: var(--text-white);
-        }
-
-        /* Fita adesiva amarelada (Tape Accent) */
-        .tape-accent {
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%) rotate(-2deg);
-            background-color: rgba(212, 163, 115, 0.45);
-            width: 120px;
-            height: 26px;
-            border-left: 2px dashed rgba(255,255,255,0.3);
-            border-right: 2px dashed rgba(255,255,255,0.3);
-            z-index: 15;
-            pointer-events: none;
-        }
-
-        /* Seções Genéricas */
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4.5rem 1.5rem;
-        }
-
-        .section-header {
-            margin-bottom: 3rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .section-title {
-            font-family: var(--font-impact);
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            color: var(--text-white);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            display: inline-block;
-            border-bottom: 4px solid var(--accent-red-dark);
-            padding-bottom: 0.2rem;
-        }
-
-        .section-subtitle {
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            margin-top: 0.5rem;
-            letter-spacing: 1px;
-        }
-
-        /* Flex & Grid Layouts */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .grid-4 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-        }
-
-        /* Cards Estilo Fanzine / VHS Xerox */
-        .grunge-card {
-            background-color: var(--bg-matte-black);
-            border: 2px solid var(--border-grunge);
-            padding: 1.8rem;
-            position: relative;
-            box-shadow: var(--shadow-xerox-black);
-            transition: all 0.25s ease;
-        }
-
-        .grunge-card:hover {
-            border-color: var(--accent-red-dark);
-            transform: translateY(-4px);
-            box-shadow: 8px 8px 0px var(--accent-red-dark);
-        }
-
-        .grunge-card-title {
-            font-family: var(--font-impact);
-            font-size: 1.8rem;
-            color: var(--text-white);
-            letter-spacing: 1.5px;
-            margin-bottom: 0.8rem;
-            text-transform: uppercase;
-        }
-
-        /* Galeria / Cards Polaroid Rotação Sutil */
-        .polaroid-card {
-            background-color: #161619;
-            border: 1px solid #333;
-            padding: 0.8rem;
-            box-shadow: var(--shadow-xerox-black);
-            transition: all 0.3s ease;
-        }
-
-        .polaroid-card:nth-child(odd) {
-            transform: rotate(-1.5deg);
-        }
-        .polaroid-card:nth-child(even) {
-            transform: rotate(1.5deg);
-        }
-
-        .polaroid-card:hover {
-            transform: rotate(0deg) scale(1.03);
-            border-color: var(--accent-red-vivid);
-            z-index: 10;
-        }
-
-        .polaroid-img-wrapper {
-            aspect-ratio: 4/3;
-            overflow: hidden;
-            background-color: #000;
-            border: 1px solid #222;
-            margin-bottom: 0.8rem;
-        }
-
-        .polaroid-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: contrast(115%) grayscale(20%);
-            transition: filter 0.3s ease;
-        }
-
-        .polaroid-card:hover .polaroid-img-wrapper img {
-            filter: contrast(125%) grayscale(0%);
-        }
-
-        .polaroid-caption {
-            font-family: var(--font-street);
-            font-size: 1.2rem;
-            color: var(--text-white);
-            margin-top: 0.3rem;
-        }
-
-        .polaroid-role {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        /* Bloco Visualizador do Arquivo Style.CSS */
-        .code-viewer-section {
-            background-color: #0a0a0c;
-            border-top: 3px dashed var(--accent-red-dark);
-            border-bottom: 3px dashed var(--accent-red-dark);
-            padding: 4rem 1.5rem;
-        }
-
-        .code-block-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: #121215;
-            border: 2px solid var(--accent-red-dark);
-            box-shadow: 8px 8px 0px #000;
-            overflow: hidden;
-        }
-
-        .code-header {
-            background-color: #1c1b22;
-            padding: 0.8rem 1.2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #333;
-        }
-
-        .code-title {
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: var(--accent-red-hover);
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .btn-copy {
-            background-color: var(--accent-red-dark);
-            color: #fff;
-            border: 1px solid #000;
-            padding: 0.4rem 0.9rem;
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: background-color 0.2s;
-        }
-
-        .btn-copy:hover {
-            background-color: var(--accent-red-hover);
-        }
-
-        pre code {
-            display: block;
-            padding: 1.5rem;
-            max-height: 480px;
-            overflow-y: auto;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.82rem;
-            color: #d1d5db;
-            line-height: 1.5;
-            white-space: pre;
-            background: #0d0d10;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: #0d0d0f;
-            border-top: 2px solid var(--border-grunge);
-            padding: 3rem 1.5rem;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .footer-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            border-bottom: 1px solid #222;
-            padding-bottom: 1.5rem;
-        }
-
-        /* Responsividade Media Queries */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none; /* Simplificado para focar na estética em mobile */
-            }
-            .hero {
-                padding-top: 3rem;
-            }
-            .polaroid-card:nth-child(odd),
-            .polaroid-card:nth-child(even) {
-                transform: rotate(0deg);
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Background VHS overlay effects -->
-    <div class="vhs-noise"></div>
-    <div class="scanlines"></div>
-
-    <!-- Header/Navegação -->
-    <header class="header">
-        <div class="header-container">
-            <a href="#" class="logo">
-                <span class="logo-tag">REC ● 1996</span>
-                <span class="logo-text">MID90S</span>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#sobre">/ Sobre</a></li>
-                <li><a href="#estetica">/ Estética</a></li>
-                <li><a href="#galeria">/ Personagens</a></li>
-                <li><a href="#css-code">/ Arquivo CSS</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <div class="vhs-stamp">
-                <i class="fa-solid fa-tape"></i> A24 FILMS | SUPER 16MM | DIR. JONAH HILL
-            </div>
-
-            <h1 class="title-huge">
-                MID90S
-                <span>Cultura, Skate & Nostalgia</span>
-            </h1>
-
-            <p class="hero-description">
-                A jornada visceral do jovem Stevie no verão de Los Angeles. Enfrentando uma vida familiar conturbada, ele descobre na cultura do skate de rua e em sua nova crew o verdadeiro significado de pertencimento, liberdade e fraternidade urbana.
-            </p>
-
-            <div class="cta-group">
-                <a href="#sobre" class="btn-grunge">
-                    <i class="fa-solid fa-film"></i> Explorar Filme
-                </a>
-                <a href="#css-code" class="btn-grunge btn-outline">
-                    <i class="fa-solid fa-code"></i> Ver Style.CSS
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção Sobre e Estética -->
-    <section id="sobre" class="section-container">
-        <div class="section-header">
-            <h2 class="section-title">O FILME E A ATMOSFERA</h2>
-            <p class="section-subtitle">// AMADURECIMENTO & TRILHA SONORA RETRÔ</p>
-        </div>
-
-        <div class="grid-2">
-            <!-- Card Historia -->
-            <div class="grunge-card">
-                <div class="tape-accent"></div>
-                <h3 class="grunge-card-title"><i class="fa-solid fa-compact-disc" style="color: var(--accent-red-vivid); margin-right: 8px;"></i> Trilha & Vivência</h3>
-                <p style="color: var(--text-light-gray); margin-bottom: 1rem;">
-                    Lançado em 2018 e ambientado no meio dos anos 90, <em>Mid90s</em> resgata a era de ouro do Skate e do Hip-Hop underground. Com músicas de <strong>Wu-Tang Clan, Cypress Hill e Pharcyde</strong> misturadas à trilha original de Trent Reznor, o filme transmite a energia Crua das fitas cassete.
-                </p>
-                <div style="background-color: #111; padding: 0.8rem; border-left: 3px solid var(--accent-red-vivid); font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">
-                    "Protect Ya Neck" - Wu-Tang Clan<br>
-                    "93 'til Infinity" - Souls of Mischief
-                </div>
-            </div>
-
-            <!-- Card Estética -->
-            <div id="estetica" class="grunge-card">
-                <div class="tape-accent"></div>
-                <h3 class="grunge-card-title"><i class="fa-solid fa-video" style="color: var(--accent-red-vivid); margin-right: 8px;"></i> Película & Proporção 4:3</h3>
-                <p style="color: var(--text-light-gray); margin-bottom: 1rem;">
-                    Jonah Hill optou por filmar em <strong>película Super 16mm</strong> com formato de tela 4:3. Essa escolha técnica recria a textura imperfeita das fitas VHS caseiras da época, trazendo granulação autêntica e atmosfera intimista de fanzine punk.
-                </p>
-                <div style="background-color: #111; padding: 0.8rem; border-left: 3px solid var(--accent-red-dark); font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">
-                    Formato: Super 16mm Film<br>
-                    Proporção: 4:3 (VHS Tube TV Look)
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Seção Galeria / Crew -->
-    <section id="galeria" style="background-color: var(--bg-matte-black); border-top: 1px solid var(--border-grunge); border-bottom: 1px solid var(--border-grunge);">
-        <div class="section-container">
-            <div class="section-header">
-                <h2 class="section-title">CREW MOTOR AVENUE</h2>
-                <p class="section-subtitle">// FANZINE DE PERSONAGENS DO VERÃO DE 1996</p>
-            </div>
-
-            <div class="grid-4">
-                <!-- Polaroid 1 -->
-                <div class="polaroid-card">
-                    <div class="polaroid-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1547447134-cd3f5c716030?q=80&w=600&auto=format&fit=crop" alt="Stevie" onerror="this.src='https://placehold.co/600x450/1a1a1e/ffffff?text=Stevie'">
-                    </div>
-                    <div class="polaroid-caption">Stevie "Sunburn"</div>
-                    <div class="polaroid-role">O protagonista em formação</div>
-                </div>
-
-                <!-- Polaroid 2 -->
-                <div class="polaroid-card">
-                    <div class="polaroid-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1564982752979-3f7bc974d29a?q=80&w=600&auto=format&fit=crop" alt="Ray" onerror="this.src='https://placehold.co/600x450/1a1a1e/ffffff?text=Ray'">
-                    </div>
-                    <div class="polaroid-caption">Ray</div>
-                    <div class="polaroid-role">Líder & Futuro Pro-Skater</div>
-                </div>
-
-                <!-- Polaroid 3 -->
-                <div class="polaroid-card">
-                    <div class="polaroid-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?q=80&w=600&auto=format&fit=crop" alt="Fuckshit" onerror="this.src='https://placehold.co/600x450/1a1a1e/ffffff?text=Fuckshit'">
-                    </div>
-                    <div class="polaroid-caption">Fuckshit</div>
-                    <div class="polaroid-role">Carismático e caótico</div>
-                </div>
-
-                <!-- Polaroid 4 -->
-                <div class="polaroid-card">
-                    <div class="polaroid-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=600&auto=format&fit=crop" alt="Fourth Grade" onerror="this.src='https://placehold.co/600x450/1a1a1e/ffffff?text=Fourth+Grade'">
-                    </div>
-                    <div class="polaroid-caption">Fourth Grade</div>
-                    <div class="polaroid-role">Cineasta de fita VHS</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SEÇÃO EXPLICATIVA E COPIÁVEL DO ARQUIVO STYLE.CSS -->
-    <section id="css-code" class="code-viewer-section">
-        <div class="section-header" style="margin-bottom: 2rem;">
-            <h2 class="section-title">ARQUIVO STYLE.CSS</h2>
-            <p class="section-subtitle">// CÓDIGO CSS COMPLETO DO DESIGN GRUNGE/UNDERGROUND 90S</p>
-        </div>
-
-        <div class="code-block-container">
-            <div class="code-header">
-                <span class="code-title">
-                    <i class="fa-solid fa-file-code"></i> style.css
-                </span>
-                <button class="btn-copy" onclick="copyCSSCode()">
-                    <i class="fa-regular fa-copy"></i> Copiar CSS
-                </button>
-            </div>
-            <pre><code id="cssCodeText">/* ==========================================================================
-   STYLE.CSS - MID90S ESTÉTICA GRUNGE, URBANA & UNDERGROUND 1990
-   ========================================================================== */
-
 :root {
     --bg-asphalt: #121214;
     --bg-matte-black: #1a1a1e;
@@ -698,6 +18,7 @@
     --font-body: 'Inter', sans-serif;
 }
 
+/* Configurações Gerais do Site */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -712,139 +33,186 @@ body {
     overflow-x: hidden;
 }
 
-/* Header & Navegação Flexbox */
-.header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background-color: rgba(18, 18, 20, 0.95);
-    border-bottom: 2px solid var(--accent-red-dark);
-    backdrop-filter: blur(8px);
+/* Topo do site estilo Grunge */
+.hero {
+    background-color: var(--accent-red-dark);
+    border-bottom: 6px solid #4a1010;
+    padding: 80px 20px;
+    text-align: center;
 }
 
-.header-container {
-    max-width: 1200px;
+.tagline {
+    font-family: var(--font-mono);
+    font-size: 1rem;
+    letter-spacing: 4px;
+    color: var(--accent-tape);
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-family: var(--font-impact);
+    font-size: 4rem;
+    margin: 15px 0;
+    color: var(--text-white);
+    text-shadow: 4px 4px 0px #000000;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    max-width: 600px;
     margin: 0 auto;
-    padding: 0.8rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    font-size: 1.2rem;
+    color: var(--text-light-gray);
 }
 
-.logo-text {
+/* Container principal das seções */
+.container {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+/* Layout em duas colunas */
+.info-section {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.info-block {
+    flex: 1;
+    background-color: var(--bg-card);
+    border: 3px solid var(--border-grunge);
+    padding: 30px;
+    box-shadow: var(--shadow-xerox);
+}
+
+.info-block h2 {
+    font-family: var(--font-impact);
+    color: var(--accent-red-vivid);
+    margin-bottom: 20px;
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
+
+.info-block p {
+    color: var(--text-light-gray);
+}
+
+/* Galeria de Fotos */
+.gallery-section {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.gallery-section h2 {
+    font-family: var(--font-impact);
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.grid-images {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.card-img {
+    border: 3px solid var(--text-white);
+    background: #000;
+    padding: 5px;
+    flex: 1;
+    box-shadow: 4px 4px 0px #000000;
+}
+
+.card-img img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: grayscale(40%) contrast(110%);
+}
+
+/* Seção Inferior da Crew */
+.crew-section {
+    display: flex;
+    gap: 40px;
+    background-color: var(--accent-red-dark);
+    padding: 40px;
+    border: 3px solid var(--text-white);
+    box-shadow: var(--shadow-xerox-black);
+}
+
+.crew-box {
+    flex: 1;
+}
+
+.crew-box h2 {
     font-family: var(--font-impact);
     font-size: 2.2rem;
-    color: var(--text-white);
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    margin-bottom: 15px;
 }
 
-/* Hero Section */
-.hero {
-    position: relative;
-    padding: 5rem 1.5rem 4rem;
-    min-height: 85vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 2px solid var(--border-grunge);
+/* Botão Estilo Skate */
+button {
+    background-color: var(--text-white);
+    color: var(--accent-red-dark);
+    font-family: var(--font-street);
+    font-size: 1.2rem;
+    padding: 12px 28px;
+    border: 3px solid #000000;
+    cursor: pointer;
+    box-shadow: 5px 5px 0px #000000;
+    margin-top: 20px;
+    transition: transform 0.1s;
 }
 
-.title-huge {
-    font-family: var(--font-impact);
-    font-size: clamp(3.2rem, 8vw, 6.5rem);
-    line-height: 0.9;
-    color: var(--text-white);
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    text-shadow: 4px 4px 0px var(--accent-red-dark), 7px 7px 0px #000;
+button:hover {
+    background-color: var(--accent-tape);
+    color: #000;
 }
 
-/* Botões Estilo Underground/Punk */
-.btn-grunge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background-color: var(--accent-red-dark);
-    color: var(--text-white);
-    font-family: var(--font-impact);
-    font-size: 1.3rem;
-    letter-spacing: 2px;
-    padding: 0.8rem 1.8rem;
-    text-decoration: none;
-    text-transform: uppercase;
-    border: 2px solid #000;
-    box-shadow: var(--shadow-xerox-black);
-    transition: all 0.15s ease;
+button:active {
+    transform: translate(4px, 4px);
+    box-shadow: 1px 1px 0px #000000;
 }
 
-/* Cards Estilo Fanzine / VHS Xerox */
-.grunge-card {
+/* Depoimentos */
+.testimonial {
     background-color: var(--bg-matte-black);
+    padding: 20px;
     border: 2px solid var(--border-grunge);
-    padding: 1.8rem;
-    position: relative;
-    box-shadow: var(--shadow-xerox-black);
+    margin-bottom: 15px;
 }
 
-/* Galeria Polaroid Rotação Sutil */
-.polaroid-card {
-    background-color: #161619;
-    border: 1px solid #333;
-    padding: 0.8rem;
-    box-shadow: var(--shadow-xerox-black);
-    transition: all 0.3s ease;
+.testimonial p {
+    font-style: italic;
 }
 
-.polaroid-card:nth-child(odd) {
-    transform: rotate(-1.5deg);
+.testimonial span {
+    display: block;
+    text-align: right;
+    color: var(--accent-red-vivid);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    margin-top: 10px;
 }
 
-.polaroid-card:nth-child(even) {
-    transform: rotate(1.5deg);
-}</code></pre>
-        </div>
-    </section>
+/* Efeito VHS ativado por JavaScript */
+.vhs-effect {
+    animation: glitch-anim 0.2s infinite;
+    filter: contrast(140%) brightness(95%) saturate(120%);
+}
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-top">
-                <div>
-                    <span style="font-family: var(--font-impact); font-size: 1.5rem; color: #fff;">MID90S (2018)</span>
-                    <p>Projeto de Design Web Urbana / Skate Culture 1990</p>
-                </div>
-                <div>
-                    <p><i class="fa-solid fa-graduation-cap"></i> Projeto Escolar - Análise Cinematográfica & Front-End</p>
-                </div>
-            </div>
-            <div style="text-align: center; color: #666; font-size: 0.75rem;">
-                © 2026 Mid90s Landing Page. Feito para fins educacionais e de demonstração estética.
-            </div>
-        </div>
-    </footer>
+@keyframes glitch-anim {
+    0% { transform: translate(0) }
+    50% { transform: translate(-1px, 1px) }
+    100% { transform: translate(1px, -1px) }
+}
 
-    <!-- Script de Interatividade e Cópia -->
-    <script>
-        function copyCSSCode() {
-            const codeText = document.getElementById('cssCodeText').innerText;
-            const textarea = document.createElement('textarea');
-            textarea.value = codeText;
-            document.body.appendChild(textarea);
-            textarea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textarea);
-
-            const btn = document.querySelector('.btn-copy');
-            const originalHTML = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-check"></i> Copiado!';
-            btn.style.backgroundColor = '#2a9d8f';
-            
-            setTimeout(() => {
-                btn.innerHTML = originalHTML;
-                btn.style.backgroundColor = 'var(--accent-red-dark)';
-            }, 2000);
-        }
-    </script>
-</body>
-</html>
+/* Celular */
+@media (max-width: 768px) {
+    .info-section, .grid-images, .crew-section {
+        flex-direction: column;
+    }
+}
