@@ -1,1 +1,520 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MID90S: Cultura e Skate | Projeto Escolar</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Permanent Marker (graffiti/skate) e Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&family=Permanent+Marker&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        vhs: {
+                            black: '#121214',
+                            dark: '#1c1b22',
+                            red: '#e63946',
+                            yellow: '#f4a261',
+                            teal: '#2a9d8f',
+                            cream: '#f1faee',
+                            gray: '#2b2d42'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        street: ['"Permanent Marker"', 'cursive'],
+                        mono: ['"Space Mono"', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Scanlines Overlay */
+        .scanlines {
+            background: linear-gradient(
+                to bottom,
+                rgba(255,255,255,0),
+                rgba(255,255,255,0) 50%,
+                rgba(0, 0, 0, 0.3) 50%,
+                rgba(0, 0, 0, 0.3)
+            );
+            background-size: 100% 4px;
+        }
+
+        /* Noise effect overlay */
+        .vhs-grain {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        }
+
+        /* 4:3 Aspect Ratio Frame Look */
+        .ratio-4-3 {
+            aspect-ratio: 4 / 3;
+        }
+
+        /* Glitch effect on hover for headings */
+        .glitch-hover:hover {
+            text-shadow: 2px 0 #e63946, -2px 0 #2a9d8f;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #121214;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e63946;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="bg-vhs-black text-vhs-cream font-sans antialiased selection:bg-vhs-red selection:text-white relative min-h-screen overflow-x-hidden">
+
+    <!-- Background VHS Effects -->
+    <div class="fixed inset-0 scanlines pointer-events-none z-50 opacity-40"></div>
+    <div class="fixed inset-0 vhs-grain pointer-events-none z-40"></div>
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-30 bg-vhs-black/90 backdrop-blur-md border-b border-white/10 px-4 py-3">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 group">
+                <span class="bg-vhs-red text-black font-mono font-bold px-2 py-0.5 text-xs rounded uppercase tracking-wider">PLAY ▶</span>
+                <span class="font-street text-xl md:text-2xl text-white group-hover:text-vhs-yellow transition">Mid90s</span>
+            </a>
+            <nav class="hidden md:flex gap-6 font-mono text-sm uppercase tracking-wider text-gray-400">
+                <a href="#sobre" class="hover:text-vhs-red transition">/ Sobre</a>
+                <a href="#estetica" class="hover:text-vhs-teal transition">/ Influências</a>
+                <a href="#galeria" class="hover:text-vhs-yellow transition">/ Galeria</a>
+                <a href="#crew" class="hover:text-white transition">/ Crew & Críticas</a>
+            </nav>
+            <span class="font-mono text-xs text-vhs-yellow border border-vhs-yellow/30 px-2 py-1 rounded hidden sm:inline-block">
+                <i class="fa-solid fa-compact-disc spin-slow mr-1"></i> PROJETO ESCOLAR
+            </span>
+        </div>
+    </header>
+
+    <!-- 1) HERO SECTION -->
+    <section class="relative min-h-[85vh] flex items-center justify-center py-16 px-4 overflow-hidden border-b border-white/10">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?q=80&w=1920&auto=format&fit=crop" 
+                 alt="Skateboarding in LA background" 
+                 class="w-full h-full object-cover opacity-20 filter grayscale contrast-125 scale-105"
+                 onerror="this.src='https://placehold.co/1920x1080/1c1b22/ffffff?text=Skate+LA+Mid90s'">
+            <div class="absolute inset-0 bg-gradient-to-t from-vhs-black via-vhs-black/80 to-transparent"></div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto text-center space-y-6">
+            <!-- Vintage VHS Stamp -->
+            <div class="inline-flex items-center gap-3 bg-vhs-dark/80 border border-vhs-red/40 px-4 py-1.5 rounded-full text-xs font-mono text-vhs-yellow mb-2 shadow-lg">
+                <span class="w-2 h-2 rounded-full bg-vhs-red animate-ping"></span>
+                <span>REC ● 1996 - LOS ANGELES, CA</span>
+                <span class="text-white/40">|</span>
+                <span>A24 FILMS</span>
+            </div>
+
+            <!-- Main Title -->
+            <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight uppercase glitch-hover transition cursor-default">
+                <span class="block font-street text-vhs-yellow text-5xl sm:text-7xl md:text-8xl mb-1 drop-shadow-[0_5px_5px_rgba(0,0,0,0.8)]">MID90S:</span>
+                <span class="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">CULTURA E SKATE</span>
+            </h1>
+
+            <!-- Subtitle / Synopsis -->
+            <p class="text-base sm:text-lg md:text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed font-light">
+                A jornada de amadurecimento (<em class="text-vhs-teal font-normal">coming-of-age</em>) do jovem <strong class="text-white">Stevie (Stevie "Sunburn")</strong> no verão sufocante de Los Angeles. Enfrentando um ambiente doméstico conturbado, ele encontra no skate de rua e em uma nova <span class="underline decoration-vhs-red decoration-2">crew de amigos</span> o verdadeiro espaço de pertencimento, liberdade e refúgio familiar.
+            </p>
+
+            <!-- Call to Actions & Meta -->
+            <div class="pt-6 flex flex-wrap justify-center items-center gap-4 font-mono text-sm">
+                <a href="#sobre" class="bg-vhs-red hover:bg-red-600 text-white font-bold px-6 py-3 rounded shadow-lg hover:shadow-vhs-red/50 transition flex items-center gap-2">
+                    <i class="fa-solid fa-film"></i> Explorar o Filme
+                </a>
+                <a href="#crew" class="bg-vhs-dark hover:bg-vhs-gray text-vhs-cream border border-white/20 px-6 py-3 rounded transition flex items-center gap-2">
+                    <i class="fa-solid fa-users"></i> Entrar na Crew
+                </a>
+            </div>
+
+            <!-- VHS Timestamp Badge Footer -->
+            <div class="pt-10 flex justify-center items-center gap-6 text-xs font-mono text-gray-500">
+                <div><i class="fa-regular fa-clock mr-1"></i> DIR. JONAH HILL</div>
+                <div>●</div>
+                <div>PROPORÇÃO 4:3</div>
+                <div>●</div>
+                <div>SUPER 16MM</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2) SEÇÃO SOBRE O FILME (2 COLUNAS) -->
+    <section id="sobre" class="py-20 px-4 max-w-6xl mx-auto">
+        <div class="text-center mb-14">
+            <h2 class="font-street text-3xl md:text-5xl text-vhs-yellow mb-2">SOBRE O FILME</h2>
+            <p class="font-mono text-xs text-gray-400 uppercase tracking-widest">// Amadurecimento, Nostalgia e Autenticidade Urbana</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+            <!-- Coluna 1: História & Trilha Sonora -->
+            <div id="historia" class="bg-vhs-dark/60 border border-white/10 p-6 md:p-8 rounded-xl relative overflow-hidden group hover:border-vhs-red/50 transition">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-vhs-red/10 rounded-full blur-2xl group-hover:bg-vhs-red/20 transition"></div>
+                
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded bg-vhs-red/20 border border-vhs-red flex items-center justify-center text-vhs-red">
+                        <i class="fa-solid fa-compact-disc text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">História & Trilha Sonora</h3>
+                        <span class="font-mono text-xs text-vhs-teal">Anos 90 em alta fidelidade sonal</span>
+                    </div>
+                </div>
+
+                <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-4">
+                    Escrito e dirigido por <strong class="text-white">Jonah Hill</strong> em sua estreia na direção, <em>Mid90s</em> acompanha Stevie (Sunny Suljic), de 13 anos, enquanto ele navega entre as agressões do irmão mais velho, Ian (Lucas Hedges), e o carinho distante da mãe, Dabney (Katherine Waterston).
+                </p>
+
+                <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6">
+                    O coração pulsante do filme é amplificado por uma <strong class="text-vhs-yellow">trilha sonora inesquecível</strong>. Misturando clássicos do Hip-Hop dos anos 90 (como <em>Wu-Tang Clan, A Tribe Called Quest, Cypress Hill</em> e <em>The Pharcyde</em>) com a trilha melancólica original composta por **Trent Reznor e Atticus Ross**, o filme resgata a sonoridade exata da era das fitas cassete.
+                </p>
+
+                <!-- Tracklist Highlights Box -->
+                <div class="bg-vhs-black/80 p-4 rounded border border-white/5 font-mono text-xs space-y-2">
+                    <div class="text-vhs-yellow font-bold uppercase border-b border-white/10 pb-1 mb-2 flex justify-between">
+                        <span><i class="fa-solid fa-tape mr-1"></i> Mixtape Destaques:</span>
+                        <span>SIDE A</span>
+                    </div>
+                    <div class="flex justify-between text-gray-400"><span>1. Wu-Tang Clan</span> <span class="text-gray-600">"Protect Ya Neck"</span></div>
+                    <div class="flex justify-between text-gray-400"><span>2. A Tribe Called Quest</span> <span class="text-gray-600">"Scenario"</span></div>
+                    <div class="flex justify-between text-gray-400"><span>3. Souls of Mischief</span> <span class="text-gray-600">"93 'til Infinity"</span></div>
+                </div>
+            </div>
+
+            <!-- Coluna 2: Influências & Estética VHS -->
+            <div id="estetica" class="bg-vhs-dark/60 border border-white/10 p-6 md:p-8 rounded-xl relative overflow-hidden group hover:border-vhs-teal/50 transition">
+                <div class="absolute top-0 right-0 w-24 h-24 bg-vhs-teal/10 rounded-full blur-2xl group-hover:bg-vhs-teal/20 transition"></div>
+
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded bg-vhs-teal/20 border border-vhs-teal flex items-center justify-center text-vhs-teal">
+                        <i class="fa-solid fa-video text-xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Influências & Estética VHS</h3>
+                        <span class="font-mono text-xs text-vhs-red">Formato 4:3 e Película Super 16mm</span>
+                    </div>
+                </div>
+
+                <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-4">
+                    Para capturar a alma crua de Los Angeles em meados da década de 1990, a produção tomou decisões estéticas marcantes: o filme foi rodado inteiramente em **película Super 16mm** e apresentado na proporção clássica de **4:3**.
+                </p>
+
+                <p class="text-gray-300 text-sm md:text-base leading-relaxed mb-6">
+                    As maiores influências vêm dos **vídeos caseiros de skate em fita VHS** produzidos na época (como os vídeos da lendária marca <em>World Industries</em> e vídeos da revista <em>Thrasher</em>). O filme rejeita a glamourização de Hollywood para entregar uma textura imperfeita, granulada, com quinas desgastadas e iluminação natural de calçadas quentes de concreto.
+                </p>
+
+                <!-- Aesthetics Pillars -->
+                <div class="grid grid-cols-2 gap-3 font-mono text-xs">
+                    <div class="bg-vhs-black/80 p-3 rounded border border-white/5">
+                        <i class="fa-solid fa-camera-retro text-vhs-teal text-lg mb-1 block"></i>
+                        <span class="text-white font-bold block">16mm Film Grain</span>
+                        <span class="text-gray-500">Textura orgânica sem nitidez digital excessiva.</span>
+                    </div>
+                    <div class="bg-vhs-black/80 p-3 rounded border border-white/5">
+                        <i class="fa-solid fa-tv text-vhs-yellow text-lg mb-1 block"></i>
+                        <span class="text-white font-bold block">Proporção 4:3</span>
+                        <span class="text-gray-500">Sensação de claustrofobia e fita VHS de tubo.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3) SEÇÃO GALERIA (4 IMAGENS LADO A LADO) -->
+    <section id="galeria" class="py-20 px-4 bg-vhs-dark/40 border-y border-white/10">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <h2 class="font-street text-3xl md:text-5xl text-vhs-teal mb-2">GALERIA DE PERSONAGENS</h2>
+                    <p class="font-mono text-xs text-gray-400 uppercase tracking-widest">// Cenas marcantes e os membros da crew do Motor Avenue Shop</p>
+                </div>
+                <span class="font-mono text-xs text-vhs-yellow mt-2 md:mt-0">
+                    <i class="fa-solid fa-images mr-1"></i> ARQUIVO FOTOGRÁFICO 1996
+                </span>
+            </div>
+
+            <!-- Grid 4 Colunas -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Card 1: Stevie -->
+                <div class="bg-vhs-black border border-white/10 p-3 rounded-lg shadow-xl hover:-translate-y-2 transition duration-300 group">
+                    <div class="relative overflow-hidden rounded mb-3 ratio-4-3 bg-vhs-gray">
+                        <img src="https://images.unsplash.com/photo-1547447134-cd3f5c716030?q=80&w=600&auto=format&fit=crop" 
+                             alt="Stevie Sunburn" 
+                             class="w-full h-full object-cover group-hover:scale-110 filter sepia-[0.2] contrast-110 transition duration-500"
+                             onerror="this.src='https://placehold.co/600x450/2b2d42/ffffff?text=Stevie+(Sunburn)'">
+                        <span class="absolute top-2 left-2 bg-black/70 font-mono text-[10px] text-vhs-yellow px-2 py-0.5 rounded">#01 STEVIE</span>
+                    </div>
+                    <h3 class="font-street text-xl text-white group-hover:text-vhs-yellow transition">Stevie "Sunburn"</h3>
+                    <p class="text-xs text-gray-400 font-mono mt-1">O jovem garoto em busca de identidade, aceitação e superação.</p>
+                </div>
+
+                <!-- Card 2: Ray -->
+                <div class="bg-vhs-black border border-white/10 p-3 rounded-lg shadow-xl hover:-translate-y-2 transition duration-300 group">
+                    <div class="relative overflow-hidden rounded mb-3 ratio-4-3 bg-vhs-gray">
+                        <img src="https://images.unsplash.com/photo-1564982752979-3f7bc974d29a?q=80&w=600&auto=format&fit=crop" 
+                             alt="Ray" 
+                             class="w-full h-full object-cover group-hover:scale-110 filter sepia-[0.2] contrast-110 transition duration-500"
+                             onerror="this.src='https://placehold.co/600x450/2b2d42/ffffff?text=Ray'">
+                        <span class="absolute top-2 left-2 bg-black/70 font-mono text-[10px] text-vhs-teal px-2 py-0.5 rounded">#02 RAY</span>
+                    </div>
+                    <h3 class="font-street text-xl text-white group-hover:text-vhs-teal transition">Ray</h3>
+                    <p class="text-xs text-gray-400 font-mono mt-1">O líder nato e skatista talentoso que sonha em se tornar profissional.</p>
+                </div>
+
+                <!-- Card 3: Fuckshit -->
+                <div class="bg-vhs-black border border-white/10 p-3 rounded-lg shadow-xl hover:-translate-y-2 transition duration-300 group">
+                    <div class="relative overflow-hidden rounded mb-3 ratio-4-3 bg-vhs-gray">
+                        <img src="https://images.unsplash.com/photo-1520045892732-304bc3ac5d8e?q=80&w=600&auto=format&fit=crop" 
+                             alt="Fuckshit" 
+                             class="w-full h-full object-cover group-hover:scale-110 filter sepia-[0.2] contrast-110 transition duration-500"
+                             onerror="this.src='https://placehold.co/600x450/2b2d42/ffffff?text=Fuckshit'">
+                        <span class="absolute top-2 left-2 bg-black/70 font-mono text-[10px] text-vhs-red px-2 py-0.5 rounded">#03 FUCKSHIT</span>
+                    </div>
+                    <h3 class="font-street text-xl text-white group-hover:text-vhs-red transition">Fuckshit</h3>
+                    <p class="text-xs text-gray-400 font-mono mt-1">O caótico e carismático skatista movido a festas e momentos do presente.</p>
+                </div>
+
+                <!-- Card 4: Fourth Grade / Ruben -->
+                <div class="bg-vhs-black border border-white/10 p-3 rounded-lg shadow-xl hover:-translate-y-2 transition duration-300 group">
+                    <div class="relative overflow-hidden rounded mb-3 ratio-4-3 bg-vhs-gray">
+                        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=600&auto=format&fit=crop" 
+                             alt="Fourth Grade" 
+                             class="w-full h-full object-cover group-hover:scale-110 filter sepia-[0.2] contrast-110 transition duration-500"
+                             onerror="this.src='https://placehold.co/600x450/2b2d42/ffffff?text=Fourth+Grade'">
+                        <span class="absolute top-2 left-2 bg-black/70 font-mono text-[10px] text-vhs-cream px-2 py-0.5 rounded">#04 4TH GRADE</span>
+                    </div>
+                    <h3 class="font-street text-xl text-white group-hover:text-vhs-cream transition">Fourth Grade</h3>
+                    <p class="text-xs text-gray-400 font-mono mt-1">O quieto aspirante a cineasta que registra tudo com sua videocam VHS.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4) SEÇÃO FINAL: COMUNIDADE & CRÍTICAS (2 COLUNAS) -->
+    <section id="crew" class="py-20 px-4 max-w-6xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-10 items-stretch">
+            
+            <!-- Coluna 1: Entrar na Crew (CTA) -->
+            <div class="bg-gradient-to-br from-vhs-dark to-vhs-black border-2 border-vhs-yellow p-8 rounded-2xl flex flex-col justify-between relative overflow-hidden shadow-2xl">
+                <div class="absolute -right-10 -bottom-10 text-vhs-yellow/5 text-9xl font-street select-none pointer-events-none">SK8</div>
+                
+                <div>
+                    <span class="inline-block bg-vhs-yellow text-black font-mono font-bold text-xs px-3 py-1 rounded mb-4 uppercase">Faça Parte da Cultura</span>
+                    <h3 class="font-street text-3xl sm:text-4xl text-white mb-4">ENTRAR NA CREW DO MOTOR AVENUE</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                        O skate nos anos 90 não era apenas um esporte; era uma subcultura de expressão, arte urbana, música e lealdade entre amigos. Quer compartilhar suas manobras ou discutir cinema e música retrô?
+                    </p>
+                </div>
+
+                <div class="pt-4">
+                    <button id="openModalBtn" class="w-full bg-vhs-yellow hover:bg-yellow-400 text-black font-extrabold py-4 px-6 rounded-lg text-lg tracking-wide uppercase shadow-lg hover:shadow-vhs-yellow/50 transition flex items-center justify-center gap-3 group">
+                        <i class="fa-solid fa-skull text-xl group-hover:rotate-12 transition"></i>
+                        <span>Entrar na Crew</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                    <p class="text-center font-mono text-[11px] text-gray-500 mt-3">* Modal interativo instantâneo do projeto escolar</p>
+                </div>
+            </div>
+
+            <!-- Coluna 2: Críticas & Depoimentos -->
+            <div class="space-y-4 flex flex-col justify-between">
+                <div class="border-b border-white/10 pb-2">
+                    <h3 class="font-street text-2xl text-vhs-red">RECEPÇÃO E CRÍTICA</h3>
+                    <p class="font-mono text-xs text-gray-400">O que a crítica e os fãs dizem sobre a obra de Jonah Hill</p>
+                </div>
+
+                <!-- Review Item 1 -->
+                <div class="bg-vhs-dark/80 border border-white/10 p-4 rounded-lg relative">
+                    <div class="flex text-vhs-yellow text-xs mb-2">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm text-gray-200 italic mb-2">
+                        "Uma das retratações mais honestas e nostálgicas da juventude dos anos 90. Jonah Hill captura perfeitamente a dor e a euforia de tentar se encaixar."
+                    </p>
+                    <span class="font-mono text-[11px] text-vhs-teal">— Rotten Tomatoes Reviewer</span>
+                </div>
+
+                <!-- Review Item 2 -->
+                <div class="bg-vhs-dark/80 border border-white/10 p-4 rounded-lg relative">
+                    <div class="flex text-vhs-yellow text-xs mb-2">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm text-gray-200 italic mb-2">
+                        "A trilha sonora e a fotografia em 16mm me transportaram direto para a minha adolescência. Stevie representa a vulnerabilidade de todos nós."
+                    </p>
+                    <span class="font-mono text-[11px] text-vhs-red">— Comentário de Fã / Letterboxd</span>
+                </div>
+
+                <!-- Review Item 3 -->
+                <div class="bg-vhs-dark/80 border border-white/10 p-4 rounded-lg relative">
+                    <div class="flex text-vhs-yellow text-xs mb-2">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm text-gray-200 italic mb-2">
+                        "Não é só um filme de skate, é uma lição de fraternidade e amadurecimento brutalmente realista."
+                    </p>
+                    <span class="font-mono text-[11px] text-vhs-yellow">— Rolling Stone Cultural Brief</span>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MODAL INTERATIVO: ENTRAR NA CREW -->
+    <div id="crewModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300">
+        <div class="bg-vhs-dark border-2 border-vhs-red w-full max-w-md p-6 rounded-xl relative shadow-2xl scale-95 transition-transform duration-300 transform" id="modalContent">
+            
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-400 hover:text-white text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <span class="font-street text-3xl text-vhs-yellow block mb-1">JUNTE-SE À CREW</span>
+                <p class="font-mono text-xs text-gray-400">Cadastre seu apelido e manobra favorita</p>
+            </div>
+
+            <form id="crewForm" class="space-y-4 font-mono text-sm">
+                <div>
+                    <label class="block text-xs text-gray-300 mb-1">SEU APELIDO / NOME:</label>
+                    <input type="text" required placeholder="Ex: Stevie Sunburn" class="w-full bg-vhs-black border border-white/20 rounded p-2.5 text-white focus:outline-none focus:border-vhs-red">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-300 mb-1">MANOBRA FAVORITA DE SKATE:</label>
+                    <select class="w-full bg-vhs-black border border-white/20 rounded p-2.5 text-white focus:outline-none focus:border-vhs-red">
+                        <option>Ollie</option>
+                        <option>Kickflip</option>
+                        <option>360 Flip (Tre Flip)</option>
+                        <option>Boardslide</option>
+                        <option>Heelflip</option>
+                        <option>Apenas escuto a trilha sonora!</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="w-full bg-vhs-red hover:bg-red-600 text-white font-bold py-3 rounded uppercase transition tracking-wider mt-2">
+                    Confirmar Inscrição ▶
+                </button>
+            </form>
+
+            <div id="modalSuccess" class="hidden text-center py-6 space-y-3">
+                <div class="text-4xl text-vhs-teal"><i class="fa-solid fa-circle-check"></i></div>
+                <h4 class="font-street text-2xl text-white">BEM-VINDO À CREW!</h4>
+                <p class="text-xs text-gray-300 font-mono">Você já faz parte da história do Motor Avenue Shop. Pegue seu skate!</p>
+                <button id="resetModalBtn" class="bg-vhs-gray text-xs text-white px-4 py-2 rounded font-mono hover:bg-gray-700">Fechar</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 5) RODAPÉ ESCOLAR E ACADÊMICO -->
+    <footer class="bg-vhs-black border-t border-white/10 py-12 px-4 font-mono text-xs text-gray-400">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <h4 class="font-street text-xl text-white mb-3">PROJETO ESCOLAR</h4>
+                <p class="leading-relaxed text-gray-400">
+                    Trabalho pedagógico focado em análise cinematográfica, cultura pop dos anos 90 e estética visual da era analógica através do filme <em>Mid90s</em> (2018).
+                </p>
+            </div>
+            <div>
+                <h4 class="text-vhs-yellow font-bold uppercase mb-3">Ficha Técnica do Filme</h4>
+                <ul class="space-y-1">
+                    <li><strong class="text-white">Direção e Roteiro:</strong> Jonah Hill</li>
+                    <li><strong class="text-white">Ano de Lançamento:</strong> 2018</li>
+                    <li><strong class="text-white">Estúdio:</strong> A24</li>
+                    <li><strong class="text-white">Elenco:</strong> Sunny Suljic, Lucas Hedges, Na-kel Smith</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-vhs-teal font-bold uppercase mb-3">Disciplinas Envolvidas</h4>
+                <p class="leading-relaxed">
+                    Artes Visuais, História do Cinema Moderno, Sociologia da Juventude & Tecnologia Front-End.
+                </p>
+            </div>
+        </div>
+
+        <div class="max-w-6xl mx-auto pt-6 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+            <div>
+                © 2026 Projeto Escolar - Mid90s. Desenvolvido para fins educacionais.
+            </div>
+            <div class="flex gap-4 text-sm text-gray-500">
+                <a href="#" class="hover:text-vhs-red transition"><i class="fa-brands fa-github"></i></a>
+                <a href="#" class="hover:text-vhs-yellow transition"><i class="fa-solid fa-graduation-cap"></i></a>
+                <a href="#" class="hover:text-vhs-teal transition"><i class="fa-solid fa-film"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LÓGICA DO MODAL -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const openModalBtn = document.getElementById('openModalBtn');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            const resetModalBtn = document.getElementById('resetModalBtn');
+            const modal = document.getElementById('crewModal');
+            const modalContent = document.getElementById('modalContent');
+            const crewForm = document.getElementById('crewForm');
+            const modalSuccess = document.getElementById('modalSuccess');
+
+            // Abrir Modal
+            openModalBtn.addEventListener('click', () => {
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modal.classList.remove('opacity-0');
+                    modalContent.classList.remove('scale-95');
+                    modalContent.classList.add('scale-100');
+                }, 10);
+            });
+
+            // Fechar Modal
+            const closeModal = () => {
+                modal.classList.add('opacity-0');
+                modalContent.classList.remove('scale-100');
+                modalContent.classList.add('scale-95');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    // Reset form visual
+                    crewForm.classList.remove('hidden');
+                    modalSuccess.classList.add('hidden');
+                }, 300);
+            };
+
+            closeModalBtn.addEventListener('click', closeModal);
+            resetModalBtn.addEventListener('click', closeModal);
+
+            // Fechar clicando fora do conteúdo
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Envio do formulário
+            crewForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                crewForm.classList.add('hidden');
+                modalSuccess.classList.remove('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
